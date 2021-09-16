@@ -221,7 +221,12 @@ module.exports = async (interaction, options = []) => {
         setTimeout(async () => {
           emb1.setDescription("Your Time for using the calculator ran out (10 minutes)")
           emb1.setColor(0xc90000)
-          await msg.edit({ embeds: [emb1], components: [] })
+          try {
+            await msg.edit({ embeds: [emb1], components: [] })
+            
+          } catch (error) {
+            return
+          }
         }, time)
     
       })
