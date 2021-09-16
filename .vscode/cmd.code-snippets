@@ -1,0 +1,21 @@
+{
+	"Creates a Discord.JS Command": {
+		"scope": "javascript,typescript",
+		"prefix": "command",
+		"body": [
+			"const Command = require('../Structures/Command');",
+			"const {} = require('discord.js');",
+			"",
+			"module.exports = new Command({",
+			"	name: '<command_name>',",
+			"    description: '<command_description>',",
+			"	type: 'BOTH',",
+			"    slashCommandOptions: [],",
+			"    permission: 'SEND_MESSAGES',",
+			"	async run (client, message, args) {",
+			"   ",
+			"	}",
+			"});"
+		]
+	}
+}

@@ -1,0 +1,23 @@
+{
+    "Creates an embed": {
+        "scope": "javascript",
+        "prefix": "embed",
+        "body": [
+            "const embed = new MessageEmbed()"
+        ]
+    },
+    "Imports Discord.JS Module (JS)": {
+        "scope": "javascript",
+        "prefix": "discord",
+        "body": [
+            "const Discord = require('discord.js');"
+        ]
+    },
+    "Imports Discord.JS Module (TS)": {
+        "scope": "typescript",
+        "prefix": "discord",
+        "body": [
+            "import Discord from 'discord.js';"
+        ]
+    }
+}

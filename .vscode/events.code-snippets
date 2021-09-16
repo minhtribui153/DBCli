@@ -1,0 +1,13 @@
+{
+	"Create a Discord.JS Event": {
+		"scope": "javascript,typescript",
+		"prefix": "event",
+		"body": [
+            "const Event = require('../Structures/Event');",
+            "",
+			"module.exports = new Event('ready', (client) => {",
+            "    console.log(`[INFO] Bot ${client.user.tag} is ready`);",
+            "});"
+		]
+	}
+}

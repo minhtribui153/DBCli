@@ -1,0 +1,13 @@
+{
+    "token": "<bot_token>",
+    "intents": "32767",
+    "prefix": "<bot_prefix>",
+    "ownerID": "<your_id>",
+    "mongoDB": {
+        "username": "<username>",
+        "password": "<password>",
+        "host": "<mongo_ip>",
+        "port": "<mongo_port>",
+        "database": "<db_name>"
+    }
+}
