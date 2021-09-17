@@ -16,9 +16,10 @@ module.exports = new Command({
     ],
     permission: 'ADMINISTRATOR',
     async run(client, message, args) {
-        const member = message.options.getMember('target');
+        const membr = message.options.getMember('target');
+        const member = message.guild.members.cache.get(membr.user.id);
 
-        if (member.id === message.author.id) return message.reply({
+        if (member.id === message.member.id) return message.reply({
             content: '❌ You cannot unmute yourself!',
             ephemeral: true,
         });
@@ -27,10 +28,6 @@ module.exports = new Command({
 
         if (!role) return message.reply({
             content: '❌ Please set a Muted Role!',
-            ephemeral: true,
-        });
-        if (!member.roles.cache.has(role)) return message.reply({
-            content: '❌ This target member has not been muted!',
             ephemeral: true,
         });
 

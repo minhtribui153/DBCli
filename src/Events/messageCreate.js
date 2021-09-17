@@ -20,7 +20,6 @@ module.exports = new Event("messageCreate", async (client, message) => {
     try {
         (await command).run(client, message, args); 
     } catch (error) {
-        console.log(error);
         return message.reply(`Command \`${command.name}\` ran into an error.\nThis error has been reported to the developers.\nIf this happens again, please contact \`${author}\`.`);
     }
 });
