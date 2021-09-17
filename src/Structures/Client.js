@@ -27,12 +27,15 @@ class Client extends Discord.Client {
     constructor() {
         super({ intents });
 
-        /**
-         * @type {Discord.Collection<string, Command>}
-         */
-
+		
 		// Discord Configuration Variables
-		this.helpCommands = new Discord.Collection();
+        // /**
+        //  * @type {Command[]}
+        //  */
+		this.helpCommands = [];
+		// /**
+        //  * @type {Command[]}
+        //  */
         this.commands = new Discord.Collection();
 
 		// Configuration Variables
@@ -73,7 +76,7 @@ class Client extends Discord.Client {
 		commands.forEach(cmd => {
 			commandsLoad[counter] = { Command: cmd.name, Description: cmd.description, Type: cmd.type }
 			this.commands.set(cmd.name, cmd);
-			this.helpCommands.set(cmd.name, cmd);
+			this.helpCommands.push(cmd);
 			counter += 1;
 		});
 
