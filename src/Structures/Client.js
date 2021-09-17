@@ -12,6 +12,7 @@ const Mongo = require('./Mongo');
 const getRandomInteger = require('../Functions/getRandomInteger');
 const tictactoe = require('../Functions/tictactoe');
 const calc = require('../Functions/calculator');
+const rps = require('../Functions/rps');
 
 // Others
 const mongoCurrency = require('discord-mongo-currency');
@@ -47,6 +48,7 @@ class Client extends Discord.Client {
 		this.getRandomInteger = getRandomInteger;
 		this.tictactoe = tictactoe;
 		this.calculator = calc;
+		this.rps = rps;
 
 		// Others
 		this.mongoCurrency = mongoCurrency;
