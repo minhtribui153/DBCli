@@ -43,3 +43,5 @@ yarn start/dev
 # NPM
 npm start/run dev
 ```
+
+> Note: This bot is under MIT License. Please check LICENSE for details
