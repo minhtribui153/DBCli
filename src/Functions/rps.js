@@ -62,7 +62,7 @@ module.exports = async (message, options = []) => {
                     }
         
                     let rock = new Discord.MessageButton()
-                        .setLabel('🪨 Rock')
+                        .setLabel('Rock')
                         .setCustomId('rock')
                         .setStyle(options.rockColor || 'SECONDARY')
                         .setEmoji("🪨")
@@ -78,7 +78,7 @@ module.exports = async (message, options = []) => {
                     }
         
                     let paper = new Discord.MessageButton()
-                        .setLabel('📰 Paper')
+                        .setLabel('Paper')
                         .setCustomId('paper')
                         .setStyle(options.paperColor || 'SECONDARY')
                         .setEmoji("📄")
@@ -94,7 +94,7 @@ module.exports = async (message, options = []) => {
                     }
         
                     let scissors = new Discord.MessageButton()
-                        .setLabel('✂️ Scissors')
+                        .setLabel('Scissors')
                         .setCustomId('scissors')
                         .setStyle(options.scissorsColor || 'SECONDARY')
                         .setEmoji("✂️")
@@ -278,7 +278,7 @@ module.exports = async (message, options = []) => {
             }
 
             let rock = new Discord.MessageButton()
-                .setLabel('🪨 Rock')
+                .setLabel('Rock')
                 .setCustomId('rock')
                 .setStyle(options.rockColor || 'SECONDARY')
                 .setEmoji("🪨")
@@ -294,7 +294,7 @@ module.exports = async (message, options = []) => {
             }
 
             let paper = new Discord.MessageButton()
-                .setLabel('📰 Paper')
+                .setLabel('Paper')
                 .setCustomId('paper')
                 .setStyle(options.paperColor || 'SECONDARY')
                 .setEmoji("📄")
@@ -310,7 +310,7 @@ module.exports = async (message, options = []) => {
             }
 
             let scissors = new Discord.MessageButton()
-                .setLabel('✂️ Scissors')
+                .setLabel('Scissors')
                 .setCustomId('scissors')
                 .setStyle(options.scissorsColor || 'SECONDARY')
                 .setEmoji("✂️")
