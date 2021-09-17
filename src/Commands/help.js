@@ -19,6 +19,6 @@ module.exports = new Command({
             embed.addField(`\`${cmd["name"]}\``, `└ ${cmd["description"]}`, true);
         }
 
-        message.channel.send({ embeds: [embed] });
+        message.reply({ embeds: [embed] });
     }
 });
