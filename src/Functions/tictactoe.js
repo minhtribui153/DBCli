@@ -23,7 +23,7 @@ module.exports = async (message, options = []) => {
         
             let accept = new Discord.MessageButton()
                 .setLabel('Accept')
-                .setStyle('PRIMARY')
+                .setStyle('SUCCESS')
                 .setCustomId('acceptttt')
         
             let decline = new Discord.MessageButton()
