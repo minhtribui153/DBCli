@@ -35,15 +35,15 @@ module.exports = new Command({
             .setAuthor(member.user.username, member.user.displayAvatarURL({ dynamic: true, }))
             .setTitle('This user has been unmuted');
 
-        try {
-            await member.roles.remove(role.id);
-            
-        } catch (error) {
+        if (!member.roles.cache.some(role => role.name === 'Muted')) {
             return message.reply({
                 content: '❌ User is not muted!',
                 ephemeral: true,
-            })
+            });
+
         }
+
+        await member.roles.remove(role.id);
 
         message.reply({
             content: 'User Unmuted!',

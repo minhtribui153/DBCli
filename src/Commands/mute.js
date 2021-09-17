@@ -47,7 +47,7 @@ module.exports = new Command({
             content: '❌ Please set a \'Muted\' Role to mute someone!',
             ephemeral: true,
         });
-        if (member.roles.cache.has(role)) return message.reply({
+        if (!member.roles.cache.some(role => role.name === 'Muted')) return message.reply({
             content: '❌ This target member has already been muted!',
             ephemeral: true,
         });
