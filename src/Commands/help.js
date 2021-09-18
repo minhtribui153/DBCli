@@ -11,25 +11,11 @@ module.exports = new Command({
         let counter = 0;
         
         let pages = [];
-        let resultsInt = 5;
-
-        const commands = client.helpCommands;
+        let resultsInt = 3;
 
         let pageNum = 1; 
-
-        // const embed = new MessageEmbed()
-        //     .setAuthor(client.user.username, client.user.avatarURL({ dynamic: true }))
-        //     .setTitle('Help Panel')
-        //     .setColor('RED')
-        //     .setDescription(`Welcome to the ${client.user.username} help panel.`)
-        //     .setFooter(`Requested by ${message.member.user.tag}`, message.member.user.avatarURL({ dynamic: true }));
         
         const times = client.helpCommands.length / resultsInt;
-
-        
-        // for (let cmd of client.helpCommands) {
-        //     embed.addField(`\`${cmd["name"]}\``, `└ ${cmd["description"]}`, true);
-        // }
         
         for (let i = 0; i < times; i++) {
             /**
@@ -65,6 +51,5 @@ module.exports = new Command({
 
         client.embedPages(client, message, pages, {  })
         
-        // message.reply({ embeds: [embed] });
     }
 });
