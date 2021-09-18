@@ -56,7 +56,7 @@ module.exports = new Command({
 
             for (const command of cmds) {
                 if (!command) continue;
-                embed.addField(command["name"], command["description"]);
+                embed.addField(command["name"], `└ ${command["description"]}`);
             }
 
             pages.push(embed);
