@@ -39,7 +39,7 @@ class Client extends Discord.Client {
 		/**
 		 * @type {{ username: String, password: String, host: String, port: Number | String, database: String }}
 		 */
-		this.mongoDB = {};
+		this.mongoDB = undefined;
 
 		// Configuration Variables
 		this.config = { ownerID: undefined, prefix: undefined, password: undefined };
@@ -115,17 +115,18 @@ class Client extends Discord.Client {
 				/**
 				 * @type {Event}
 				 */
-				const event = require(`../Events/${file}`);
+				const event = require(`../${this.eventsFolder}/${file}`);
 				if (!event.event) throw new EventError('Event name not set!');
 				eventsLoad[counter] = { Event: event.event };
 				this.on(event.event, event.run.bind(null, this));
 				counter += 1;
 			});
 		
-		if (!this.mongoDB === {}) {
+		if (this.mongoDB) {
 			await Mongo(this.mongoDB).then(console.log('[STATUS] Connecting to Database'));
 			await Mongo.MongoCurrency(this.mongoDB).then('[STATUS] Connected to Discord Currency');
 		} else {
+			
 			console.warn('[WARNING] MongoDB not setup! Bot will not connect to Database!');
 		}
 
