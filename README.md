@@ -26,6 +26,36 @@ Copy the [config.json.example]('src/Data/config.json.example'), create a config.
 }
 ```
 
+Then, paste this code into your index.js:
+```javascript
+// Imports
+const Client = require("./Structures/Client");
+const config = require('./Data/config.json');
+
+const client = new Client();
+
+// Clear Console
+console.clear();
+
+// Setup
+client.setup({
+    sourcesFolder: '<source_folder>',
+    commandFolder: '<command_folder>',
+    eventsFolder: '<events_folder>',
+    token: config.token,
+    mongoDB: {
+        username: config.mongoDB.username,
+        password: config.mongoDB.password,
+        host: config.mongoDB.host,
+        port: config.mongoDB.port,
+        database: config.mongoDB.database,
+    }
+});
+
+// Start Discord Bot
+client.start();
+```
+
 Once done, use either Yarn/NPM to install packages
 
 ```bash

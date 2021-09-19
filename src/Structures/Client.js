@@ -13,42 +13,57 @@ const functions = require('../function');
 const mongoCurrency = require('discord-mongo-currency');
 const fs = require("fs");
 
-// Configuration
-const config = require('../Data/config.json');
-const intents = new Discord.Intents(config.intents);
+const config = require("../Data/config.json");
+
+// Error Structures
+const { SetupError, CommandError, EventError } = require('./Error');
 
 // Client Structure
 class Client extends Discord.Client {
     constructor() {
-        super({ intents });
-
+        super({ intents: new Discord.Intents(config.intents) });
 		
 		// Discord Configuration Variables
-        // /**
-        //  * @type {Command[]}
-        //  */
 		this.helpCommands = [];
-		// /**
-        //  * @type {Command[]}
-        //  */
         this.commands = new Discord.Collection();
 
+		// Bot Setup
+		this.commandFolder = '';
+		this.sourcesFolder = '';
+		this.eventsFolder = '';
+		this.token = '';
+		this.intents = undefined;
+
+		// MongoDB Setup
+
+		/**
+		 * @type {{ username: String, password: String, host: String, port: Number | String, database: String }}
+		 */
+		this.mongoDB = {};
+
 		// Configuration Variables
-		this.config = { ownerID: config.ownerID, prefix: config.prefix, password: config.password };
+		this.config = { ownerID: undefined, prefix: undefined, password: undefined };
 		
 		
 		// Functions
 		this.main = Discord;
 		this.function = functions;
-
+		
 		// Others
-		this.mongoCurrency = mongoCurrency;
+		this.mongoCurrency = mongoCurrency
+		
     }
 
 	/**
 	 * Starts the bot
+	 * @param {String} token
 	 */
-    async start(token) {
+    async start() {
+
+		if (this.sourcesFolder === '') throw new SetupError('Please setup a Sources Folder!');
+		if (this.commandFolder === '') throw new SetupError('Please setup a Command Folder!');
+		if (this.eventsFolder === '') throw new SetupError('Please setup a Events Folder!');
+		if (this.token === '') throw new SetupError('Please provide a bot token!');
 
 		let counter = 1;
 
@@ -56,7 +71,7 @@ class Client extends Discord.Client {
 		const commandsLoad = {};
 		
 		// Only Syncing Commands
-		const commandFiles = fs.readdirSync("./src/Commands")
+		const commandFiles = fs.readdirSync(`./${this.sourcesFolder}/${this.commandFolder}`)
 			.filter(file => file.endsWith(".js"));
 
 		/**
@@ -65,6 +80,7 @@ class Client extends Discord.Client {
 		const commands = commandFiles.map(file => require(`../Commands/${file}`));
 
 		commands.forEach(cmd => {
+			if (!cmd.name || !cmd.description || !cmd.type) throw new CommandError('Command Name/Description/Type not set!');
 			commandsLoad[counter] = { Command: cmd.name, Description: cmd.description, Type: cmd.type }
 			this.commands.set(cmd.name, cmd);
 			this.helpCommands.push(cmd);
@@ -93,35 +109,47 @@ class Client extends Discord.Client {
 		const eventsLoad = {};
 		counter = 1
 
-		fs.readdirSync("./src/Events")
+		fs.readdirSync(`./${this.sourcesFolder}/${this.eventsFolder}`)
 			.filter(file => file.endsWith(".js"))
 			.forEach(file => {
 				/**
 				 * @type {Event}
 				 */
 				const event = require(`../Events/${file}`);
+				if (!event.event) throw new EventError('Event name not set!');
 				eventsLoad[counter] = { Event: event.event };
 				this.on(event.event, event.run.bind(null, this));
 				counter += 1;
 			});
-
-        await Mongo().then(console.log('[STATUS] Connecting to Database'));
-		await Mongo.MongoCurrency().then('[STATUS] Connected to Discord Currency');
+		
+		if (!this.mongoDB === {}) {
+			await Mongo(this.mongoDB).then(console.log('[STATUS] Connecting to Database'));
+			await Mongo.MongoCurrency(this.mongoDB).then('[STATUS] Connected to Discord Currency');
+		} else {
+			console.warn('[WARNING] MongoDB not setup! Bot will not connect to Database!');
+		}
 
 		console.table(commandsLoad);
 		console.table(eventsLoad);
 
         
-        this.login(token);
+        this.login(this.token);
 	}
 
 	/**
-	 * 
-	 * @param {{}} functionArray 
+	 * @typedef {{ username: String, password: String, host: String, port: Number | String, database: String }} mongoDbConfig
+	 * @param {{ commandFolder: String, sourcesFolder: String, eventsFolder: String, token: String, intents: Number | Object, mongoDB: mongoDbConfig  }} config 
 	 */
-	addFunctions(functionArray) {
-		this.function = functionArray;
-		console.log('[INFO] Functions Added');
+	setup(config) {
+		// Bot Configuration
+		this.commandFolder = config.commandFolder;
+		this.sourcesFolder = config.sourcesFolder;
+		this.eventsFolder = config.eventsFolder;
+		this.token = config.token;
+		this.intents = config.intents;
+
+		// MongoDB Configuration
+		this.mongoDB = config.mongoDB;
 	}
 }
 
