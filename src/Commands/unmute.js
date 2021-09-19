@@ -1,6 +1,5 @@
 const Command = require('../Structures/Command');
 const MutedRoleSchema = require('../Schemas/MutedRoleSchema');
-const { MessageEmbed } = require('discord.js');
 
 module.exports = new Command({
     name: "unmute",
@@ -31,7 +30,7 @@ module.exports = new Command({
             ephemeral: true,
         });
 
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setAuthor(member.user.username, member.user.displayAvatarURL({ dynamic: true, }))
             .setTitle('This user has been unmuted');
 

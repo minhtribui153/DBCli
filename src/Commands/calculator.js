@@ -8,7 +8,7 @@ module.exports = new Command({
     slashCommandOptions: [],
     permission: 'SEND_MESSAGES',
     async run (client, message, args) {
-        client.calculator(message, {
+        client.function.calc(message, {
             embedColor: 'RED',
         })
     }

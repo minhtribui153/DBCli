@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const { MessageEmbed } = require('discord.js');
 
 module.exports = new Command({
     name: 'embed',
@@ -8,7 +7,7 @@ module.exports = new Command({
     slashCommandOptions: [],
     permission: 'SEND_MESSAGES',
     async run (client, message, args) {
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setTitle('Hello')
         
         const newMessage = await message.reply({ embeds: [embed] });

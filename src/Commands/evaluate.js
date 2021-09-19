@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const { MessageEmbed } = require('discord.js');
 
 module.exports = new Command({
     name: 'evaluate',
@@ -24,17 +23,17 @@ module.exports = new Command({
         const password = message.options.getString('password');
         const expressionCode = message.options.getString('expression_code');
 
-        if (!password === client.password) return message.reply({
+        if (!password === client.config.password) return message.reply({
             content: '❌ Incorrect Password! Access Denied!',
             ephemeral: true,
         });
 
-        if (!message.user.id === client.ownerID) return message.reply({
+        if (!message.user.id === client.config.ownerID) return message.reply({
             content: `❌ Not my owner! Access Denied!`,
             ephemeral: true,
         });
 
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setAuthor(`${client.user.tag} Evaluation`, client.user.displayAvatarURL({ dynamic: true }))
             .setTitle('JavaScript Evaluation')
             .setDescription('This is used to evaluate JavaScript code from my console. (Owner-Only)')

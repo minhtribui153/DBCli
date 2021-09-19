@@ -1,4 +1,3 @@
-const { MessageEmbed } = require('discord.js');
 const Command = require('../Structures/Command');
 
 module.exports = new Command({
@@ -27,7 +26,7 @@ module.exports = new Command({
 
         const oldEmbed = targetMessage.embeds[0];
 
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setTitle('Among Us | Tasks')
             .setDescription('The Among Us Match has been started! Start doing your tasks!')
             .setColor('GREEN')

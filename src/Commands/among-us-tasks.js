@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const { MessageEmbed } = require('discord.js');
 
 module.exports = new Command({
     name: 'among-us-tasks',
@@ -26,7 +25,7 @@ module.exports = new Command({
 
         const oldEmbed = targetMessage.embeds[0];
 
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setTitle('Among Us | Tasks')
             .setDescription('The Voting Session has ended. Continue with your tasks!')
             .setThumbnail('https://i.imgflip.com/4k2ieq.png')

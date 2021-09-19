@@ -8,6 +8,6 @@ module.exports = new Command({
     slashCommandOptions: [],
     permission: 'SEND_MESSAGES',
     async run (client, message, args) {
-        client.rps(message);
+        client.function.rps(message);
     }
 });

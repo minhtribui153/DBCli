@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const { MessageEmbed } = require('discord.js');
 
 module.exports = new Command({
     name: "mute",
@@ -56,7 +55,7 @@ module.exports = new Command({
             ephemeral: true,
         });
 
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setAuthor(member.user.username, member.user.displayAvatarURL({ dynamic: true, }))
             .setTitle('This user has been muted')
             .setDescription(`This is because he/she was ${reason}`)

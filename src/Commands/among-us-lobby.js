@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const { MessageEmbed } = require('discord.js');
 
 module.exports = new Command({
     name: 'among-us-lobby',

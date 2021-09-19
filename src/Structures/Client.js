@@ -1,7 +1,5 @@
 // Discord Packages
 const Discord = require("discord.js");
-const Distube = require("distube");
-const logs = require('discord-logs');
 
 // Structures
 const Command = require("./Command");
@@ -9,12 +7,7 @@ const Event = require("./Event");
 const Mongo = require('./Mongo');
 
 // Functions
-const getRandomInteger = require('../Functions/getRandomInteger');
-const tictactoe = require('../Functions/tictactoe');
-const calc = require('../Functions/calculator');
-const rps = require('../Functions/rps');
-const embedPages = require('../Functions/embedPages');
-const num = require('../Functions/number');
+const functions = require('../function');
 
 // Others
 const mongoCurrency = require('discord-mongo-currency');
@@ -41,26 +34,20 @@ class Client extends Discord.Client {
         this.commands = new Discord.Collection();
 
 		// Configuration Variables
-		this.ownerID = config.ownerID;
-        this.prefix = config.prefix;
-		this.password = config.password;
+		this.config = { ownerID: config.ownerID, prefix: config.prefix, password: config.password };
 		
-		// Music Variables
-		this.distube = new Distube(this, { searchSongs: false, emitNewSongOnly: true });
-		this.status = (queue) => `Volume: \`${queue.volume}%\` | Filter: \`${queue.filter || "Off"}\` | Loop: \`${queue.repeatMode ? queue.repeatMode == 2 ? "All Queue" : "This Song" : "Off"}\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
 		
 		// Functions
-		this.getRandomInteger = getRandomInteger;
-		this.tictactoe = tictactoe;
-		this.calculator = calc;
-		this.rps = rps;
-		this.embedPages = embedPages;
-		this.number = num
+		this.main = Discord;
+		this.function = functions;
 
 		// Others
 		this.mongoCurrency = mongoCurrency;
     }
 
+	/**
+	 * Starts the bot
+	 */
     async start(token) {
 
 		let counter = 1;
@@ -126,6 +113,15 @@ class Client extends Discord.Client {
 
         
         this.login(token);
+	}
+
+	/**
+	 * 
+	 * @param {{}} functionArray 
+	 */
+	addFunctions(functionArray) {
+		this.function = functionArray;
+		console.log('[INFO] Functions Added');
 	}
 }
 

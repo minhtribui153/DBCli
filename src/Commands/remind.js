@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const { MessageEmbed } = require('discord.js');
 const ReminderSchema = require('../Schemas/ReminderSchema');
 const ms = require('ms');
 
@@ -75,12 +74,12 @@ module.exports = new Command({
                 break;
         }
 
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setTitle(`Reminder \`${reminder}\` Created`)
             .setDescription(`I will remind you in ${time} ${timeCheck[type]}`)
             .setFooter(`Reminder created by ${message.user.tag}`, message.user.displayAvatarURL({ dynamic: true }));
         
-        const remindedEmbed = new MessageEmbed()
+        const remindedEmbed = new client.main.MessageEmbed()
             .setTitle(`🔔 New Upcoming Reminder 🔔`)
             .setDescription(reminder)
             .setTimestamp(date);

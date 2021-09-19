@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const { MessageEmbed } = require('discord.js');
 
 module.exports = new Command({
     name: 'help',
@@ -33,7 +32,7 @@ module.exports = new Command({
                 };
             }
 
-            const embed = new MessageEmbed()
+            const embed = new client.main.MessageEmbed()
                 .setAuthor(client.user.username, client.user.avatarURL({ dynamic: true }))
                 .setTitle('Help Panel')
                 .setColor('RANDOM')
@@ -49,7 +48,12 @@ module.exports = new Command({
             pageNum += 1;
         }
 
-        client.embedPages(client, message, pages, {  })
+        message.reply({
+            content: 'Help Command loaded!',
+            ephemeral: true,
+        })
+
+        client.function.embedPages(client, message, pages, {  })
         
     }
 });

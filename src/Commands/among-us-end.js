@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const { MessageEmbed } = require('discord.js');
 
 const winning = {
     Crewmates: {
@@ -59,7 +58,7 @@ module.exports = new Command({
 
         const oldEmbed = targetMessage.embeds[0];
 
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setTitle(`Among Us | ${winning[winner].name}`)
             .setDescription(`${winning[winner].text} Thanks for playing!`)
             .setColor(winning[winner].color)

@@ -1,6 +1,5 @@
 const Command = require('../Structures/Command');
 const WarnSchema = require('../Schemas/WarnSchema');
-const { MessageEmbed } = require('discord.js');
 
 module.exports = new Command({
     name: 'warnings',
@@ -26,7 +25,7 @@ module.exports = new Command({
                 const e = data.content.map(
                     (w, i) => `\n\`${i + 1}\` - Moderator: ${message.guild.members.cache.get(w.moderator).user.tag}, Reason: ${w.reason}`
                 );
-                const embed = new MessageEmbed()
+                const embed = new client.main.MessageEmbed()
                     .setTitle(`${user.user.tag} warnings`)
                     .setDescription(e.join(' '));
                 

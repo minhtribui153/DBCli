@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const { MessageEmbed } = require('discord.js');
 
 const Voting = {
     "Emergency Meeting": {
@@ -59,7 +58,7 @@ module.exports = new Command({
 
         const oldEmbed = targetMessage.embeds[0];
 
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setTitle(`Among Us | ${Voting[meetingType].name}`)
             .setThumbnail(Voting[meetingType].imageURL)
             .setFooter(oldEmbed.footer.text, oldEmbed.footer.iconURL);

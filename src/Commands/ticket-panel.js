@@ -1,5 +1,4 @@
 const Command = require("../Structures/Command");
-const { MessageEmbed, MessageButton, MessageActionRow } = require('discord.js')
 
 module.exports = new Command({
     name: "ticketing",
@@ -7,7 +6,7 @@ module.exports = new Command({
     type: "SLASH",
     permission: 'ADMINISTRATOR',
     async run(client, message, args) {
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setColor(message.guild.userinfoget.displayHexColor())
             .setAuthor(message.guild.name, message.guild.iconURL({
                 dynamic: true
@@ -21,9 +20,9 @@ module.exports = new Command({
             )
 
 
-        const bt = new MessageActionRow()
+        const bt = new client.main.MessageActionRow()
             .addComponents(
-                new MessageButton()
+                new client.main.MessageButton()
                     .setCustomId('ticket')
                     .setLabel('🎫 Create Ticket!')
                     .setStyle('PRIMARY'),

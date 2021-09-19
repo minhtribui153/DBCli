@@ -8,7 +8,7 @@ module.exports = new Command({
     slashCommandOptions: [],
     permission: 'SEND_MESSAGES',
     async run (client, message, args) {
-        const coins = client.getRandomInteger(1, 1000);
+        const coins = client.function.getRandomInteger(1, 1000);
         const user = await client.mongoCurrency.findUser(message.member.id, message.guild.id); // Get the user from the database
         if (!user) {
             client.mongoCurrency.createUser(message.user.id, message.guild.id);

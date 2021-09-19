@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const {} = require('discord.js');
 
 module.exports = new Command({
     name: 'tictactoe',
@@ -15,6 +14,6 @@ module.exports = new Command({
     ],
     permission: 'SEND_MESSAGES',
     async run(client, message, args) {
-        client.tictactoe(message);
+        client.function.tictactoe(message);
     }
 });

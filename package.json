@@ -6,11 +6,9 @@
   "author": "Minh Tri#6872",
   "license": "MIT",
   "dependencies": {
-    "discord-logs": "^2.0.1",
     "discord-mongo-currency": "^1.0.4",
     "discord.js": "^13.1.0",
     "discord.sudo": "^1.0.7",
-    "distube": "^2.8.18",
     "mathjs": "^9.4.5",
     "mongoose": "^6.0.2",
     "ms": "^2.1.3",

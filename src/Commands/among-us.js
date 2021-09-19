@@ -1,4 +1,3 @@
-const { MessageEmbed } = require('discord.js');
 const AmongUsCategorySchema = require('../Schemas/AmongUsCategorySchema');
 const Command = require('../Structures/Command');
 
@@ -63,7 +62,7 @@ module.exports = new Command({
             parent: categoryDocument.categoryId,
         });
 
-        const embed = new MessageEmbed()
+        const embed = new client.main.MessageEmbed()
             .setTitle('Among Us | Lobby')
             .setDescription('A new Among Us Match has been created!')
             .addField('🌎 Region', region)

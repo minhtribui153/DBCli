@@ -4,8 +4,8 @@ const { author } = require("../../package.json");
 module.exports = new Event("messageCreate", async (client, message) => {
     if (message.author.bot) return;
     if (!message.guild) return;
-    if (!message.content.startsWith(client.prefix)) return;
-    const args = message.content.substring(client.prefix.length).split(/ +/);
+    if (!message.content.startsWith(client.config.prefix)) return;
+    const args = message.content.substring(client.config.prefix.length).split(/ +/);
     
     const command = client.commands.find(cmd => cmd.name == args[0]);
 
