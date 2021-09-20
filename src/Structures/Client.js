@@ -77,7 +77,7 @@ class Client extends Discord.Client {
 		/**
 		 * @type {Command[]}
 		 */
-		const commands = commandFiles.map(file => require(`../Commands/${file}`));
+		const commands = commandFiles.map(file => require(`../${this.commandFolder}/${file}`));
 
 		commands.forEach(cmd => {
 			if (!cmd.name || !cmd.description || !cmd.type) throw new CommandError('Command Name/Description/Type not set!');
@@ -138,8 +138,9 @@ class Client extends Discord.Client {
 	}
 
 	/**
+	 * @typedef {{ prefix: String, ownerID: String, password: String }} bot
 	 * @typedef {{ username: String, password: String, host: String, port: Number | String, database: String }} mongoDbConfig
-	 * @param {{ commandFolder: String, sourcesFolder: String, eventsFolder: String, token: String, intents: Number | Object, mongoDB: mongoDbConfig  }} config 
+	 * @param {{ commandFolder: String, sourcesFolder: String, botConfig: bot, eventsFolder: String, token: String, intents: Number | Object, mongoDB: mongoDbConfig  }} config 
 	 */
 	setup(config) {
 		// Bot Configuration
@@ -148,6 +149,13 @@ class Client extends Discord.Client {
 		this.eventsFolder = config.eventsFolder;
 		this.token = config.token;
 		this.intents = config.intents;
+
+		// Other Configuration
+		if (!config.botConfig) throw new SetupError('Bot Configuration not filled out!');
+		this.config["prefix"] = config.botConfig.prefix;
+		this.config["ownerID"] = config.botConfig.ownerID;
+		this.config["password"] = config.botConfig.password;
+
 
 		// MongoDB Configuration
 		this.mongoDB = config.mongoDB;

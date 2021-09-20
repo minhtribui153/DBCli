@@ -19,6 +19,11 @@ client.setup({
         host: config.mongoDB.host,
         port: config.mongoDB.port,
         database: config.mongoDB.database,
+    },
+    botConfig: {
+        prefix: config.prefix,
+        ownerID: config.ownerID,
+        password: config.password,
     }
 })
 
