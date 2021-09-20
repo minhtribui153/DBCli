@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const WarnSchema = require('../Schemas/WarnSchema');
 
 module.exports = new Command({
     name: 'remove-all-warns',
@@ -14,9 +13,11 @@ module.exports = new Command({
     ],
     description: 'Remove all warnings of a user',
     permission: 'ADMINISTRATOR',
-    
+
     run: async (client, message, args) => {
-        const user =  message.options.getMember('target');
+        const WarnSchema = client.schemas.WarnSchema;
+
+        const user = message.options.getMember('target');
         if (!user) return message.channel.send({
             content: '❌ User Not Found',
             ephemeral: true,
@@ -33,7 +34,7 @@ module.exports = new Command({
                 })
                 message.reply(`Cleared all the warnings!`)
             } else {
-                message.reply({ 
+                message.reply({
                     content: '❌ User does not have any warnings in this server!',
                     ephemeral: true,
                 });

@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const AmongUsCategorySchema = require('../Schemas/AmongUsCategorySchema');
 
 module.exports = new Command({
     name: 'set-among-us-category',
@@ -16,6 +15,8 @@ module.exports = new Command({
     permission: 'ADMINISTRATOR',
 
     run: async (client, message, args) => {
+        const AmongUsCategorySchema = client.schemas.AmongUsCategorySchema;
+
         const categoryId = message.options.getString('category_id');
 
         await AmongUsCategorySchema.findOneAndUpdate(

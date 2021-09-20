@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const LogChannelSchema = require('../Schemas/LogChannelSchema');
 
 module.exports = new Command({
     name: 'set-logging-channel',
@@ -16,6 +15,8 @@ module.exports = new Command({
     permission: 'ADMINISTRATOR',
 
     run: async (client, message, args) => {
+        const LogChannelSchema = client.schemas.LogChannelSchema;
+
         const channel = message.options.getChannel('channel');
 
         await LogChannelSchema.findOneAndUpdate(

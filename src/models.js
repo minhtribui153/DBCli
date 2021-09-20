@@ -1,0 +1,11 @@
+// Export Models
+module.exports.AmongUsCategorySchema = require('./Schemas/AmongUsCategorySchema');
+module.exports.ChatbotSchema = require('./Schemas/ChatbotSchema');
+module.exports.CurrencyProfileSchema = require('./Schemas/CurrencyProfileSchema');
+module.exports.LeaveSchema = require('./Schemas/LeaveSchema');
+module.exports.LogChannelSchema = require('./Schemas/LogChannelSchema');
+module.exports.MutedRoleSchema = require('./Schemas/MutedRoleSchema');
+module.exports.ReminderSchema = require('./Schemas/ReminderSchema');
+module.exports.ServerConfigSchema = require('./Schemas/ServerConfigSchema');
+module.exports.WarnSchema = require('./Schemas/WarnSchema');
+module.exports.WelcomeSchema = require('./Schemas/WelcomeSchema');

@@ -7,11 +7,12 @@ const Discord = require("discord.js");
 const Client = require("./Client.js");
 
 /**
+ * Runs the bot
  * @param {Discord.Message | Discord.CommandInteraction} message
  * @param {string[]} args
  * @param {Client} client
  */
-function RunFunction(client, message, args) {}
+function RunFunction(client, message, args) { }
 
 // Command Structure
 class Command {

@@ -6,7 +6,6 @@
   "author": "Minh Tri#6872",
   "license": "MIT",
   "dependencies": {
-    "discord-mongo-currency": "^1.0.4",
     "discord.js": "^13.1.0",
     "discord.sudo": "^1.0.7",
     "mathjs": "^9.4.5",

@@ -6,11 +6,11 @@ const Command = require("./Command");
 const Event = require("./Event");
 const Mongo = require('./Mongo');
 
-// Functions
+// Functions and Schemas
 const functions = require('../function');
+const models = require('../models');
 
 // Others
-const mongoCurrency = require('discord-mongo-currency');
 const fs = require("fs");
 
 const config = require("../Data/config.json");
@@ -20,12 +20,12 @@ const { SetupError, CommandError, EventError } = require('./Error');
 
 // Client Structure
 class Client extends Discord.Client {
-    constructor() {
-        super({ intents: new Discord.Intents(config.intents) });
-		
+	constructor() {
+		super({ intents: new Discord.Intents(config.intents) });
+
 		// Discord Configuration Variables
 		this.helpCommands = [];
-        this.commands = new Discord.Collection();
+		this.commands = new Discord.Collection();
 
 		// Bot Setup
 		this.commandFolder = '';
@@ -43,22 +43,22 @@ class Client extends Discord.Client {
 
 		// Configuration Variables
 		this.config = { ownerID: undefined, prefix: undefined, password: undefined };
-		
-		
+
+
 		// Functions
 		this.main = Discord;
 		this.function = functions;
-		
-		// Others
-		this.mongoCurrency = mongoCurrency
-		
-    }
+
+		// Schemas
+		this.schemas = models;
+
+	}
 
 	/**
 	 * Starts the bot
 	 * @param {String} token
 	 */
-    async start() {
+	async start() {
 
 		if (this.sourcesFolder === '') throw new SetupError('Please setup a Sources Folder!');
 		if (this.commandFolder === '') throw new SetupError('Please setup a Command Folder!');
@@ -67,9 +67,9 @@ class Client extends Discord.Client {
 
 		let counter = 1;
 
-        // Command Handler
+		// Command Handler
 		const commandsLoad = {};
-		
+
 		// Only Syncing Commands
 		const commandFiles = fs.readdirSync(`./${this.sourcesFolder}/${this.commandFolder}`)
 			.filter(file => file.endsWith(".js"));
@@ -102,7 +102,7 @@ class Client extends Discord.Client {
 		this.removeAllListeners();
 
 		this.on("ready", async () => {
-            const cmds = await this.application.commands.set(slashCommands);
+			const cmds = await this.application.commands.set(slashCommands);
 			console.log('[STATUS] Slash Commands Registered')
 		});
 
@@ -121,23 +121,23 @@ class Client extends Discord.Client {
 				this.on(event.event, event.run.bind(null, this));
 				counter += 1;
 			});
-		
+
 		if (this.mongoDB) {
 			await Mongo(this.mongoDB).then(console.log('[STATUS] Connecting to Database'));
-			await Mongo.MongoCurrency(this.mongoDB).then('[STATUS] Connected to Discord Currency');
 		} else {
-			
+
 			console.warn('[WARNING] MongoDB not setup! Bot will not connect to Database!');
 		}
 
 		console.table(commandsLoad);
 		console.table(eventsLoad);
 
-        
-        this.login(this.token);
+
+		this.login(this.token);
 	}
 
 	/**
+	 * Setups your Bot
 	 * @typedef {{ prefix: String, ownerID: String, password: String }} bot
 	 * @typedef {{ username: String, password: String, host: String, port: Number | String, database: String }} mongoDbConfig
 	 * @param {{ commandFolder: String, sourcesFolder: String, botConfig: bot, eventsFolder: String, token: String, intents: Number | Object, mongoDB: mongoDbConfig  }} config 

@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const ReminderSchema = require('../Schemas/ReminderSchema');
 const ms = require('ms');
 
 const timeCheck = {
@@ -52,7 +51,9 @@ module.exports = new Command({
         },
     ],
     permission: 'SEND_MESSAGES',
-    async run (client, message, args) {
+    async run(client, message, args) {
+        const reminderSchema = client.schemas.ReminderSchema;
+
         const time = parseInt(message.options.getInteger('duration'));
         const type = message.options.getString('duration_type');
         const reminder = message.options.getString('reminder');
@@ -78,12 +79,12 @@ module.exports = new Command({
             .setTitle(`Reminder \`${reminder}\` Created`)
             .setDescription(`I will remind you in ${time} ${timeCheck[type]}`)
             .setFooter(`Reminder created by ${message.user.tag}`, message.user.displayAvatarURL({ dynamic: true }));
-        
+
         const remindedEmbed = new client.main.MessageEmbed()
             .setTitle(`🔔 New Upcoming Reminder 🔔`)
             .setDescription(reminder)
             .setTimestamp(date);
-        
+
         message.reply({ embeds: [embed] });
 
         setTimeout(() => {

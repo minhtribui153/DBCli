@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const WarnSchema = require('../Schemas/WarnSchema');
 
 module.exports = new Command({
     name: 'warn',
@@ -20,8 +19,10 @@ module.exports = new Command({
     ],
     description: 'Warns a member',
     permission: 'ADMINISTRATOR',
-    
+
     run: async (client, message, args) => {
+        const WarnSchema = client.schemas.WarnSchema;
+
         const user = message.options.getMember('target');
 
         if (!user) return message.reply({
@@ -39,13 +40,13 @@ module.exports = new Command({
                     guild: message.guild.id,
                     user: user.user.id,
                     content: [{
-                        moderator:  message.user.id || message.author.id,
+                        moderator: message.user.id || message.author.id,
                         reason: reason,
                     }]
                 })
             } else {
                 const object = {
-                    moderator:  message.user.id || message.author.id,
+                    moderator: message.user.id || message.author.id,
                     reason: reason,
                 }
                 data.content.push(object);

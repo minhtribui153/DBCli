@@ -4,7 +4,6 @@
 		"prefix": "command",
 		"body": [
 			"const Command = require('../Structures/Command');",
-			"const {} = require('discord.js');",
 			"",
 			"module.exports = new Command({",
 			"	name: '<command_name>',",

@@ -1,6 +1,4 @@
 const Command = require('../Structures/Command');
-const {  } = require('discord.js');
-const ChatbotSchema = require('../Schemas/ChatbotSchema');
 
 module.exports = new Command({
     name: 'set-chatbot',
@@ -17,6 +15,8 @@ module.exports = new Command({
     permission: 'ADMINISTRATOR',
 
     run: async (client, message, args) => {
+        const ChatbotSchema = client.schemas.ChatbotSchema;
+
         const channel = message.options.getChannel('channel');
         if (!channel) return message.reply('❌ Enter a channel ID for chatbot!');
 

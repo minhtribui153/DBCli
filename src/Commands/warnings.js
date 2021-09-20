@@ -1,5 +1,4 @@
 const Command = require('../Structures/Command');
-const WarnSchema = require('../Schemas/WarnSchema');
 
 module.exports = new Command({
     name: 'warnings',
@@ -15,8 +14,10 @@ module.exports = new Command({
     description: 'Shows warnings of a user',
 
     run: async (client, message, args) => {
+        const WarnSchema = client.schemas.WarnSchema;
+
         const user = message.options.getMember('target') || message.author;
-        
+
         WarnSchema.findOne({
             guild: message.guild.id,
             user: user.id,
@@ -28,7 +29,7 @@ module.exports = new Command({
                 const embed = new client.main.MessageEmbed()
                     .setTitle(`${user.user.tag} warnings`)
                     .setDescription(e.join(' '));
-                
+
                 message.reply({ embeds: [embed] });
             } else {
                 message.reply({
