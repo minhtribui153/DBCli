@@ -9,6 +9,11 @@ module.exports = new Command({
     ],
     permission: 'SEND_MESSAGES',
     async run(client, message, args) {
+        client.function.currency.account.create(message);
 
+        message.reply({
+            content: 'Account Created Successfully!',
+            ephemeral: true,
+        })
     }
 });
