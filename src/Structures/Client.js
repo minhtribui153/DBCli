@@ -25,6 +25,7 @@ class Client extends Discord.Client {
 
 		// Discord Configuration Variables
 		this.helpCommands = [];
+		this.cooldownCommands = new Set();
 		this.commands = new Discord.Collection();
 
 		// Bot Setup

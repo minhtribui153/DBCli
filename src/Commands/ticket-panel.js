@@ -7,7 +7,7 @@ module.exports = new Command({
     permission: 'ADMINISTRATOR',
     async run(client, message, args) {
         const embed = new client.main.MessageEmbed()
-            .setColor(message.guild.userinfoget.displayHexColor())
+            .setColor('RANDOM')
             .setAuthor(message.guild.name, message.guild.iconURL({
                 dynamic: true
             }))
@@ -26,7 +26,7 @@ module.exports = new Command({
                     .setCustomId('ticket')
                     .setLabel('🎫 Create Ticket!')
                     .setStyle('PRIMARY'),
-                );
+            );
 
         message.reply({
             content: 'Ticket Panel Activated!',

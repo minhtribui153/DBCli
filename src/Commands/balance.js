@@ -26,9 +26,9 @@ module.exports = new Command({
 
                 const embed = new client.main.MessageEmbed()
                     .setColor('BLUE')
-                    .setTitle('User Balance')
-                    .addField('Wallet', `${wallet}`)
-                    .addField('Bank', `${bank}`);
+                    .setTitle('🪙 User Balance 🪙')
+                    .addField('👛 Wallet', `${wallet}`)
+                    .addField('🏦 Bank', `${bank}`);
 
                 message.reply({ embeds: [embed] });
             } else return message.reply({

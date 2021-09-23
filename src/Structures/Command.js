@@ -18,7 +18,7 @@ function RunFunction(client, message, args) { }
 class Command {
 	/**
 	 * @typedef {"BOTH" | "SLASH" | "TEXT"} CommandType
-	 * @typedef {{name: string, description: string, permission: Discord.PermissionString, type: CommandType, slashCommandOptions: Discord.ApplicationCommandOption[], run: RunFunction}} CommandOptions
+	 * @typedef {{name: string, description: string, permission: Discord.PermissionString, type: CommandType, cooldown: Number, slashCommandOptions: Discord.ApplicationCommandOption[], run: RunFunction}} CommandOptions
 	 * @param {CommandOptions} options
 	 */
 	constructor(options) {
@@ -27,6 +27,7 @@ class Command {
 		this.permission = options.permission ? options.permission : "SEND_MESSAGES";
 		this.type = ["BOTH", "SLASH", "TEXT"].includes(options.type) ? options.type : "TEXT";
 		this.slashCommandOptions = options.slashCommandOptions || [];
+		this.cooldown = options.cooldown ? options.cooldown : 0;
 		this.run = options.run;
 	}
 }

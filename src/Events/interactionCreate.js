@@ -17,6 +17,11 @@ module.exports = new Event("interactionCreate", async (client, interaction) => {
         ephemeral: true,
     });
 
+    if (client.cooldownCommands.has(`${interaction.member.id}-${command.name}`)) return interaction.reply({
+        content: `❌ Woah, slow down! Command Cooldown is ${command.cooldown} seconds!`,
+        ephemeral: true,
+    });
+
     const permission = interaction.member.permissions.has(command.permission);
 
     if (!permission) return interaction.reply({
@@ -24,7 +29,15 @@ module.exports = new Event("interactionCreate", async (client, interaction) => {
         ephemeral: true,
     });
     try {
-        command.run(client, interaction, args);
+        await command.run(client, interaction, args);
+
+        if (!command.cooldown <= 0) {
+            client.cooldownCommands.add(`${interaction.member.id}-${command.name}`)
+            setTimeout(() => {
+                client.cooldownCommands.delete(`${interaction.member.id}-${command.name}`)
+            }, 1000 * command.cooldown);
+        }
+
     } catch (error) {
         return interaction.reply({
             content: `⚠️ An error has occured and has been reported to developers.\nContact owner ${client.owner.tag} if this happens again`,
