@@ -10,11 +10,28 @@ module.exports = new Command({
 
     run: async (client, message, args) => {
 
+        const checks = client.function.currency.account.checkForAccount(message);
+
         const randomCoins = client.function.getRandomInteger(1, 1000);
 
-        client.function.currency.account.giveCoins(message, randomCoins)
+        const use = [
+            "Yes",
+            "No",
+        ];
 
-        message.reply(`💰 You begged and received 🪙 ${randomCoins} coins!`)
+        const check = client.function.choose(use);
+
+        if (check === "Yes" && checks) {
+            client.function.currency.account.giveCoins(message, randomCoins);
+            return message.reply(`💰 You begged and received 🪙 ${randomCoins} coins!`);
+        } else if (check === "No" && checks) {
+            return message.reply(`❌ You begged and received Nothing, LOL! 😆`);
+        } else {
+            return message.reply({
+                content: '❌ No Currency Account Found! Please create one!',
+                ephemeral: true
+            });
+        }
 
     }
 })

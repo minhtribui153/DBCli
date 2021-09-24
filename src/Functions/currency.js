@@ -2,6 +2,16 @@ const CurrencyProfileSchema = require('../Schemas/CurrencyProfileSchema');
 
 module.exports = {
     account: {
+        checkForAccount: async (message) => {
+
+            const user = await CurrencyProfileSchema.findOne({
+                userID: message.member.id,
+            });
+
+            if (user) { return true; }
+            else { return false; }
+
+        },
         create: async (message) => {
             const profile = await CurrencyProfileSchema.create({
                 userID: message.member.id,
@@ -12,10 +22,8 @@ module.exports = {
             profile.save();
         },
         giveCoins: async (message, coins) => {
-            const user = message.member;
-
-            await CurrencyProfileSchema.findOneAndUpdate({
-                userID: user.id,
+            return await CurrencyProfileSchema.findOneAndUpdate({
+                userID: message.member.id,
 
             }, {
                 $inc: {

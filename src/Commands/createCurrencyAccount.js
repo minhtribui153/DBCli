@@ -9,11 +9,21 @@ module.exports = new Command({
     ],
     permission: 'SEND_MESSAGES',
     async run(client, message, args) {
-        client.function.currency.account.create(message);
+        const check = client.function.currency.account.checkForAccount(message);
 
-        message.reply({
-            content: 'Account Created Successfully!',
-            ephemeral: true,
-        })
+        if (!check) {
+            client.function.currency.account.create(message);
+
+            return message.reply({
+                content: 'Account Created Successfully!',
+                ephemeral: true,
+            })
+
+        } else {
+            return message.reply({
+                content: '❌ No Currency Account Found! Please create one!',
+                ephemeral: true
+            })
+        }
     }
 });

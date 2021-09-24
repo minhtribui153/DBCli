@@ -15,6 +15,15 @@ module.exports = new Command({
     run: async (client, message, args) => {
         const amount = message.options.getInteger('amount');
 
-        client.function.currency.account.withdraw(message, amount);
+        const check = client.function.currency.account.checkForAccount(message);
+
+        if (check) {
+            client.function.currency.account.withdraw(message, amount);
+        } else {
+            return message.reply({
+                content: '❌ No Currency Account Found! Please create one!',
+                ephemeral: true
+            })
+        }
     }
 })

@@ -14,6 +14,10 @@ module.exports = new Command({
     ],
     run: async (client, message, args) => {
         const amount = message.options.getInteger('amount');
+        if (!client.function.currency.account.checkForAccount(message)) return message.reply({
+            content: '❌ No Currency Account Found! Please create one!',
+            ephemeral: true
+        });
 
         client.function.currency.account.deposit(message, amount);
     }

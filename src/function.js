@@ -7,4 +7,4 @@ module.exports.embedPages = require('./Functions/embedPages');
 module.exports.num = require('./Functions/number');
 module.exports.currency = require('./Functions/currency');
 module.exports.sleep = require('./Functions/sleep');
-
+module.exports.choose = require('./Functions/choose');
