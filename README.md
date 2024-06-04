@@ -13,8 +13,6 @@ Sometimes, we need to thank people for helping us in some ways such as coding, e
 There are about 7 features created to help develop this bot. These features can be useful to turn your server into an automated one.
 > - <b>Suggestions</b><br>
 In order to have a stable server for everyone, this command helps to let you set a channel for suggestions and accept or deny suggestions from members.
-> - <b>And so much more!</b><br>
-You can look at the code to see more what this package can do for your bot. This README.file will soon be updated for more information.
 
 ## Setup
 
