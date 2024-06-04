@@ -2,9 +2,19 @@
 
 Gaming, Music, Entertainment, Personal, Moderation, Logging, All in One!
 
-## How to use this Discord Bot?
-
-DBCli uses both Slash and Text Commands. Check it out!
+> ## <b>What's in store?</b>
+> - <b>Built-in Command handler</b><br>
+This project has a built-in command handler that handles both slash and text commands. The code for this project has been refactored from my previous Commando-based Discord Bot with a custom command handler.
+> - <b>Among Us Command</b><br>
+This command can help to make it easier to play Among Us with friends by creating a corresponding voice channel and deletes the channel when they are no longer used.
+> - <b>Thanks Leaderboard and Thanks Command</b><br>
+Sometimes, we need to thank people for helping us in some ways such as coding, educating or tutoring. These commands sets a leaderboard of thanks and will display how many thanks a user has.
+> - <b>Built-in Features</b><br>
+There are about 7 features created to help develop this bot. These features can be useful to turn your server into an automated one.
+> - <b>Suggestions</b><br>
+In order to have a stable server for everyone, this command helps to let you set a channel for suggestions and accept or deny suggestions from members.
+> - <b>And so much more!</b><br>
+You can look at the code to see more what this package can do for your bot. This README.file will soon be updated for more information.
 
 ## Setup
 
